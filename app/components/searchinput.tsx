@@ -1,5 +1,9 @@
 import React, { useState } from "react";
 import { TextInput, View, StyleSheet, Image } from "react-native";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 
 const SearchInput = () => {
   const [search, setSearch] = useState("");
@@ -10,7 +14,7 @@ const SearchInput = () => {
       <Image
         source={searchImage}
         alt="search"
-        style={{ width: 24, height: 24 }}
+        style={{ width: wp("6%"), height: wp("6%") }}
       />
       <TextInput
         style={styles.input}
@@ -27,13 +31,13 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: "#fff",
-    borderRadius: 5,
-    padding: 5,
+    borderRadius: wp("1.25%"),
+    padding: wp("1.25%"),
   },
   input: {
-    marginLeft: 10,
+    marginLeft: wp("2.5%"),
     flex: 1,
-    padding: 8,
+    padding: wp("2%"),
   },
 });
 

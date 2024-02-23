@@ -2,6 +2,10 @@ import React from "react";
 import { TouchableOpacity, StyleSheet, Text, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Icon from "react-native-vector-icons/FontAwesome";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 
 type textprops = {
   text: string;
@@ -18,7 +22,7 @@ const SigninBtn = (props: textprops) => {
       style={styles.btn}
     >
       <View style={styles.innerContainer}>
-        <Icon name={props.icon} size={24} color="white" />
+        <Icon name={props.icon} size={wp("6%")} color="white" />
         <Text style={styles.text}>{props.text}</Text>
       </View>
     </TouchableOpacity>
@@ -28,9 +32,9 @@ const SigninBtn = (props: textprops) => {
 const styles = StyleSheet.create({
   btn: {
     backgroundColor: "blue",
-    width: "45%",
-    height: 50,
-    borderRadius: 10,
+    width: wp("40%"),
+    height: hp("6.25%"),
+    borderRadius: wp("2.5%"),
     justifyContent: "center",
   },
   innerContainer: {
@@ -41,7 +45,7 @@ const styles = StyleSheet.create({
   text: {
     textAlign: "center",
     color: "white",
-    marginLeft: 10,
+    marginLeft: wp("2.5%"),
   },
 });
 

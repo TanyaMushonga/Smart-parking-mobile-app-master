@@ -1,13 +1,18 @@
 import { View, Text, ScrollView, StyleSheet } from "react-native";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 import React from "react";
 import SearchInput from "../components/searchinput";
 import Parkingspace from "../components/parkingspace";
 import SearchFilter from "../components/SearchFilter";
+import Parkingslots from "../components/parkingslots";
 
 const index = () => {
   return (
     <ScrollView style={styles.container}>
-      <View style={{ flex: 1, gap: 10 }}>
+      <View style={{ flex: 1, gap: wp("2.5%") }}>
         <SearchInput />
         <ScrollView>
           <SearchFilter />
@@ -16,13 +21,16 @@ const index = () => {
 
       <View style={styles.maps}></View>
 
-      <View style={{ gap: 10 }}>
-        <Text style={{ fontWeight: "bold", fontSize: 16 }}>
+      <View style={{ gap: wp("2.5%"), marginBottom: hp("20%") }}>
+        <Text style={{ fontWeight: "bold", fontSize: wp("4%") }}>
           Available parking space
         </Text>
-        <Parkingspace />
-        <Parkingspace />
-        <Parkingspace />
+        <View style={{ gap: wp("4%") }}>
+          <Parkingslots />
+          <Parkingslots />
+          <Parkingslots />
+          <Parkingslots />
+        </View>
       </View>
     </ScrollView>
   );
@@ -30,16 +38,16 @@ const index = () => {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 20,
+    padding: wp("5%"),
     display: "flex",
     height: "auto",
   },
   maps: {
     backgroundColor: "#fff",
-    height: 300,
+    height: hp("37.5%"),
     width: "100%",
-    marginVertical: 10,
-    borderRadius: 5,
+    marginVertical: wp("2.5%"),
+    borderRadius: wp("1.25%"),
   },
 });
 

@@ -1,5 +1,9 @@
 import { View, TextInput } from "react-native";
 import React, { useState } from "react";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 
 interface Props {
   placeholder: string;
@@ -16,7 +20,7 @@ const Numberinput = (props: Props) => {
   return (
     <TextInput
       style={{
-        height: 40,
+        height: hp("6%"),
         borderColor: "gray",
         borderWidth: 1,
         borderRadius: 5,

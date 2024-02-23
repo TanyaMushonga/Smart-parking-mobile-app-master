@@ -7,7 +7,10 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from "react-native";
-
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 import React from "react";
 import Textinput from "../components/textinput";
 import Numberinput from "../components/numberinput";
@@ -69,8 +72,8 @@ const login = () => {
 
 const styles = StyleSheet.create({
   signin: {
-    width: 100,
-    height: 100,
+    width: wp("25%"), // 25% of screen width
+    height: hp("12.5%"), // 12.5% of screen height
   },
 
   signinview: {
@@ -79,39 +82,40 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   container: {
-    padding: 24,
+    padding: wp("6%"), // 6% of screen width
     height: "100%",
   },
   textaccount: {
-    marginTop: 20,
+    marginTop: hp("2.5%"), // 2.5% of screen height
   },
   createaccount: {
-    fontSize: 24,
+    fontSize: wp("6%"), // 6% of screen width
     fontWeight: "bold",
   },
   easy: {
-    fontSize: 16,
+    fontSize: wp("4%"), // 4% of screen width
     color: "grey",
   },
   inputcontainer: {
-    marginTop: 20,
-    gap: 10,
+    marginTop: hp("2.5%"), // 2.5% of screen height
+    gap: wp("2.5%"), // 2.5% of screen width
   },
   input: {
-    gap: 10,
+    gap: wp("2.5%"), // 2.5% of screen width
   },
   btncontainer: {
-    marginTop: 20,
+    marginTop: hp("2.5%"), // 2.5% of screen height
     backgroundColor: "white",
   },
   link: {
     color: "blue",
-    marginTop: 10,
+    marginTop: hp("2.5%"), // 2.5% of screen height
   },
   signinoptions: {
     flexDirection: "row",
     justifyContent: "space-between",
-    gap: 5,
+    gap: wp("1.25%"), // 1.25% of screen width
+    marginBottom: hp("5%"),
   },
 });
 

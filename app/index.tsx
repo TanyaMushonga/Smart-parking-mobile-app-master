@@ -55,14 +55,14 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   car1: {
-    width: 200,
-    height: 200,
-    left: 130,
+    width: wp("50%"), // 50% of screen width
+    height: hp("25%"), // 25% of screen height
+    left: wp("32.5%"), // 32.5% of screen width
   },
   car2: {
-    width: 200,
-    height: 160,
-    left: 20,
+    width: wp("50%"), // 50% of screen width
+    height: hp("20%"), // 20% of screen height
+    left: wp("5%"), // 5% of screen width
   },
   btnview: {
     marginTop: 20,
