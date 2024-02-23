@@ -8,6 +8,7 @@ import SearchInput from "../components/searchinput";
 import Parkingspace from "../components/parkingspace";
 import SearchFilter from "../components/SearchFilter";
 import Parkingslots from "../components/parkingslots";
+import MapViewComponent from "../components/mapView";
 
 const index = () => {
   return (
@@ -19,7 +20,9 @@ const index = () => {
         </ScrollView>
       </View>
 
-      <View style={styles.maps}></View>
+      <View style={styles.maps}>
+        <MapViewComponent />
+      </View>
 
       <View style={{ gap: wp("2.5%"), marginBottom: hp("20%") }}>
         <Text style={{ fontWeight: "bold", fontSize: wp("4%") }}>
@@ -46,8 +49,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     height: hp("37.5%"),
     width: "100%",
-    marginVertical: wp("2.5%"),
-    borderRadius: wp("1.25%"),
+    marginVertical: wp("5.5%"),
+    borderRadius: wp("5.25%"),
   },
 });
 
