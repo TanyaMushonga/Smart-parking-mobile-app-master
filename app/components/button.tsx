@@ -16,7 +16,7 @@ const BTN = (props: textprops) => {
   return (
     <Link href={"/tabs"} asChild>
       <TouchableOpacity onPress={() => {}} style={styles.btn}>
-        <Text style={{ textAlign: "center", color: "white", marginTop: 15 }}>
+        <Text style={{ textAlign: "center", color: "white" }}>
           {props.text}
         </Text>
       </TouchableOpacity>
@@ -28,8 +28,9 @@ const styles = StyleSheet.create({
   btn: {
     backgroundColor: "blue",
     width: "100%",
-    height: hp("8%"),
+    height: hp("6.5%"),
     borderRadius: 10,
+    padding: wp("2%"),
   },
 });
 

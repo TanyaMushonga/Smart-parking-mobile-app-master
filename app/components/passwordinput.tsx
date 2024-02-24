@@ -22,9 +22,9 @@ const PasswordInput = (props: PasswordInputProps) => {
       style={{
         flexDirection: "row",
         alignItems: "center",
-        borderWidth: 1,
+        backgroundColor: "#f2f2f2",
         borderRadius: 5,
-        padding: 5,
+        padding: wp("2%"),
       }}
     >
       <TextInput

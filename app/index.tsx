@@ -29,9 +29,7 @@ const index = () => {
       <View style={styles.btnview}>
         <Link style={styles.link} href="/login/signin" asChild>
           <TouchableOpacity style={styles.btn}>
-            <Text
-              style={{ textAlign: "center", color: "white", marginTop: 15 }}
-            >
+            <Text style={{ textAlign: "center", color: "white" }}>
               Get Started
             </Text>
           </TouchableOpacity>
@@ -69,8 +67,9 @@ const styles = StyleSheet.create({
   },
   btn: {
     width: "100%",
-    height: 50,
+    height: hp("6.5%"),
     backgroundColor: "blue",
+    padding: wp("2%"),
     borderRadius: 10,
   },
   subheader: {
