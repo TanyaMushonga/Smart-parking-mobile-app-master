@@ -5,6 +5,7 @@ import {
   ScrollView,
   TouchableOpacity,
   SafeAreaView,
+  StatusBar,
 } from "react-native";
 import React from "react";
 import {
@@ -21,7 +22,8 @@ const avg = require("./../../assets/avg.png");
 const topup = () => {
   return (
     <ScrollView style={{}}>
-      <SafeAreaView
+      <StatusBar backgroundColor="#3d85c6" barStyle="light-content" />
+      <View
         style={{
           backgroundColor: "#3d85c6",
           borderBottomLeftRadius: 20,
@@ -66,7 +68,7 @@ const topup = () => {
           </Text>
           <Text style={{ color: "#bcbcbc" }}>Balance: $10.00</Text>
         </View>
-      </SafeAreaView>
+      </View>
       <View style={{ padding: wp("4%") }}>
         <View style={{ marginTop: hp("3%"), marginBottom: hp("15%") }}>
           <Text style={{ fontWeight: "bold", fontSize: wp("5%") }}>

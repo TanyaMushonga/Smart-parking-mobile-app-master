@@ -9,6 +9,8 @@ const topup = require("./../../assets/topup.png");
 const help = require("./../../assets/help.png");
 const helpselected = require("./../../assets/helpselected.png");
 const user = require("./../../assets/user1.png");
+const notification = require("./../../assets/notification.png");
+const notificationselected = require("./../../assets/notificationselected.png");
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -101,7 +103,7 @@ const _layouts = () => {
         }}
       />
       <Tabs.Screen
-        name="support"
+        name="notifications"
         options={{
           title: "",
           tabBarIcon: ({ focused }: { focused: boolean }) => {
@@ -115,7 +117,7 @@ const _layouts = () => {
                 }}
               >
                 <Image
-                  source={focused ? help : helpselected}
+                  source={focused ? notification : notificationselected}
                   style={{
                     width: wp("6%"),
                     height: wp("6%"),
@@ -128,7 +130,7 @@ const _layouts = () => {
                     fontSize: wp("3%"),
                   }}
                 >
-                  Support
+                  Notifications
                 </Text>
               </View>
             );
