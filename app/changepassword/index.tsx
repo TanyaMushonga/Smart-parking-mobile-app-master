@@ -33,7 +33,6 @@ const index = () => {
         <Text
           style={{
             fontSize: wp("4%"),
-            fontWeight: "bold",
             marginVertical: hp("3%"),
           }}
         >
@@ -43,7 +42,6 @@ const index = () => {
         <Text
           style={{
             fontSize: wp("4%"),
-            fontWeight: "bold",
             marginVertical: hp("3%"),
           }}
         >
@@ -53,7 +51,6 @@ const index = () => {
         <Text
           style={{
             fontSize: wp("4%"),
-            fontWeight: "bold",
             marginVertical: hp("3%"),
           }}
         >

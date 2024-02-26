@@ -53,7 +53,13 @@ const topup = () => {
         >
           <Image
             source={require("./../../assets/profile.jpg")}
-            style={{ width: wp("20%"), height: wp("20%"), borderRadius: 100 }}
+            style={{
+              width: wp("30%"),
+              height: wp("30%"),
+              borderRadius: 100,
+              borderWidth: 3,
+              borderColor: "white",
+            }}
           />
           <Text
             style={{

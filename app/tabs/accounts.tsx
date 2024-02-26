@@ -52,7 +52,7 @@ const accounts = () => {
       >
         Profile
       </Text>
-      <Link href={"/changepassword"} asChild>
+      <Link href={"/changeprofile"} asChild>
         <TouchableOpacity
           style={{
             flexDirection: "row",
@@ -71,7 +71,7 @@ const accounts = () => {
           <Image source={next} style={{ width: wp("5%"), height: wp("5%") }} />
         </TouchableOpacity>
       </Link>
-      <Link href={"/changepassword"} asChild>
+      <Link href={"/changeprofile"} asChild>
         <TouchableOpacity
           style={{
             flexDirection: "row",
@@ -99,7 +99,7 @@ const accounts = () => {
       >
         Support
       </Text>
-      <Link href={"/changepassword"} asChild>
+      <Link href={""} asChild>
         <TouchableOpacity
           style={{
             flexDirection: "row",
@@ -127,7 +127,7 @@ const accounts = () => {
       >
         Legal
       </Text>
-      <Link href={"/changepassword"} asChild>
+      <Link href={""} asChild>
         <TouchableOpacity
           style={{
             flexDirection: "row",
@@ -146,11 +146,7 @@ const accounts = () => {
           <Image source={next} style={{ width: wp("5%"), height: wp("5%") }} />
         </TouchableOpacity>
       </Link>
-      <Link
-        href={"/changepassword"}
-        asChild
-        style={{ marginBottom: hp("10%") }}
-      >
+      <Link href={""} asChild style={{ marginBottom: hp("10%") }}>
         <TouchableOpacity
           style={{
             flexDirection: "row",
