@@ -6,23 +6,68 @@ import {
   ScrollView,
   KeyboardAvoidingView,
   Platform,
+  TextInput,
+  TouchableOpacity,
+  Alert,
+  ActivityIndicator,
 } from "react-native";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
-import React from "react";
-import Textinput from "../components/textinput";
-import Numberinput from "../components/numberinput";
-import PasswordInput from "../components/passwordinput";
+import React, { useState } from "react";
+import Icon from "react-native-vector-icons/FontAwesome";
 import Divider from "../components/divider";
 import BTN from "../components/button";
 import { Link } from "expo-router";
 import SigninBtn from "../components/signinbtn";
-import Icon from "react-native-vector-icons/FontAwesome";
 const driver = require("../../assets/user2.png");
+import firebase from "firebase/app";
+import "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { app } from "./../config/firebase";
 
 const login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [fullname, setFullname] = useState("");
+  const [phone, setPhone] = useState("");
+  const auth = getAuth(app);
+
+  const [value, setValue] = useState("");
+
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleTextChange = (text: string) => {
+    const formattedText = text.replace(/[^0-9]/g, ""); // Remove non-numeric characters
+    setValue(formattedText);
+  };
+
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setIsPasswordVisible(!isPasswordVisible);
+  };
+
+  const handleSignUp = async () => {
+    setIsLoading(true);
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      Alert.alert("Success", "User created successfully");
+    } catch (error) {
+      if (error.code === "auth/email-already-in-use") {
+        Alert.alert("Error", "The email is already in use");
+      } else {
+        Alert.alert("Error", "Failed to create user");
+      }
+    } finally {
+      setIsLoading(false);
+    }
+  };
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -39,23 +84,101 @@ const login = () => {
         <View style={styles.inputcontainer}>
           <View style={styles.input}>
             <Text>Email</Text>
-            <Textinput placeholder={"Email"} />
+            <TextInput
+              style={{
+                height: hp("6%"),
+                borderColor: "gray",
+                backgroundColor: "#f2f2f2",
+                borderRadius: 5,
+                padding: wp("2%"),
+              }}
+              placeholder={"Enter email"}
+              value={email}
+              onChangeText={setEmail}
+              autoCapitalize="none"
+            />
           </View>
           <View style={styles.input}>
             <Text>Fullname</Text>
-            <Textinput placeholder={"Fullname"} />
+            <TextInput
+              style={{
+                height: hp("6%"),
+                borderColor: "gray",
+                backgroundColor: "#f2f2f2",
+                borderRadius: 5,
+                padding: wp("2%"),
+              }}
+              placeholder={"Enter fullname"}
+              value={fullname}
+              onChangeText={setFullname}
+              autoCapitalize="none"
+            />
           </View>
           <View style={styles.input}>
             <Text>Phone number</Text>
-            <Numberinput placeholder={"+263 "} />
+            <TextInput
+              style={{
+                height: hp("6%"),
+                borderColor: "gray",
+                backgroundColor: "#f2f2f2",
+                borderRadius: 5,
+                padding: wp("2%"),
+              }}
+              keyboardType="phone-pad"
+              onChangeText={handleTextChange}
+              value={value}
+              placeholder="Enter phone number"
+            />
           </View>
           <View style={styles.input}>
             <Text>Password</Text>
-            <PasswordInput placeholder={"Enter password"} />
+            <View
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+                backgroundColor: "#f2f2f2",
+                borderRadius: 5,
+                padding: wp("2%"),
+              }}
+            >
+              <TextInput
+                secureTextEntry={!isPasswordVisible}
+                style={{ flex: 1, height: hp("4%") }}
+                placeholder={"Enter password"}
+                value={password}
+                onChangeText={setPassword}
+              />
+              <TouchableOpacity onPress={togglePasswordVisibility}>
+                <Icon
+                  name={isPasswordVisible ? "eye-slash" : "eye"}
+                  size={20}
+                />
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
         <View style={styles.btncontainer}>
-          <BTN text="Create account" />
+          <TouchableOpacity
+            onPress={() => {
+              handleSignUp();
+            }}
+            style={{
+              backgroundColor: "blue",
+              width: "100%",
+              height: hp("6.5%"),
+              borderRadius: 10,
+              padding: wp("2%"),
+            }}
+            disabled={isLoading}
+          >
+            <Text style={{ textAlign: "center", color: "white" }}>
+              {isLoading ? (
+                <ActivityIndicator size="small" color="white" />
+              ) : (
+                "Sign Up"
+              )}
+            </Text>
+          </TouchableOpacity>
         </View>
         <Link style={styles.link} href="/login/signin">
           <Text>Already have an account?</Text>
