@@ -38,7 +38,10 @@ const topup = () => {
             width: "100%",
           }}
         >
-          <Link href="/settings" style={{ right: wp("3%"), top: wp("3%") }}>
+          <Link
+            href="/tabs/accounts"
+            style={{ right: wp("3%"), top: wp("3%") }}
+          >
             <FontAwesome name="cog" size={wp("8%")} color="#fff" />
           </Link>
         </View>

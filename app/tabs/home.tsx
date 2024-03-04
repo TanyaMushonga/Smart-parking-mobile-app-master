@@ -9,12 +9,15 @@ import Parkingspace from "../components/parkingspace";
 import SearchFilter from "../components/SearchFilter";
 import Parkingslots from "../components/parkingslots";
 import MapViewComponent from "../components/mapView";
+import Headers from "../components/header";
 
 const index = () => {
   return (
     <ScrollView style={styles.container}>
       <View style={{ flex: 1, gap: wp("2.5%") }}>
-        <SearchInput />
+        <View>
+          <Headers />
+        </View>
         <ScrollView>
           <SearchFilter />
         </ScrollView>

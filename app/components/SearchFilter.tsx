@@ -1,68 +1,46 @@
-import { ScrollView, Text, TouchableOpacity, View } from "react-native";
+import React, { useState } from "react";
+import { ScrollView, TouchableOpacity, Text } from "react-native";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
-import React from "react";
 
-const SearchFilter = () => {
+const MyComponent = () => {
+  const [selectedButton, setSelectedButton] = useState(null);
+
+  const buttons = ["All", "Paid", "None Paid", "CBD", "Avenues"];
+
+  const handlePress = (button) => {
+    setSelectedButton(button);
+  };
+
   return (
-    <ScrollView style={{}}>
-      <View
-        style={{
-          flexDirection: "row",
-          flex: 1,
-          justifyContent: "space-between",
-        }}
-      >
+    <ScrollView
+      style={{ flex: 1 }}
+      contentContainerStyle={{
+        flexDirection: "row",
+        paddingVertical: wp("2%"),
+      }}
+      horizontal={true}
+    >
+      {buttons.map((button, index) => (
         <TouchableOpacity
+          key={index}
+          onPress={() => handlePress(button)}
           style={{
-            backgroundColor: "#B0D2FF",
-            padding: wp("1.25%"),
-            borderRadius: wp("1.75%"),
-          }}
-        >
-          <Text style={{ color: "blue" }}>All</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={{
-            backgroundColor: "#B0D2FF",
+            backgroundColor: selectedButton === button ? "blue" : "#B0D2FF",
             padding: wp("1.25%"),
             borderRadius: wp("1.25%"),
+            marginRight: wp("4%"),
           }}
         >
-          <Text style={{ color: "blue" }}>Paid</Text>
+          <Text style={{ color: selectedButton === button ? "white" : "blue" }}>
+            {button}
+          </Text>
         </TouchableOpacity>
-        <TouchableOpacity
-          style={{
-            backgroundColor: "#B0D2FF",
-            padding: wp("1.25%"),
-            borderRadius: wp("1.25%"),
-          }}
-        >
-          <Text style={{ color: "blue" }}>None Paid</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={{
-            backgroundColor: "#B0D2FF",
-            padding: wp("1.25%"),
-            borderRadius: wp("1.25%"),
-          }}
-        >
-          <Text style={{ color: "blue" }}>CBD</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={{
-            backgroundColor: "#B0D2FF",
-            padding: wp("1.25%"),
-            borderRadius: wp("1.25%"),
-          }}
-        >
-          <Text style={{ color: "blue" }}>Avenues</Text>
-        </TouchableOpacity>
-      </View>
+      ))}
     </ScrollView>
   );
 };
 
-export default SearchFilter;
+export default MyComponent;

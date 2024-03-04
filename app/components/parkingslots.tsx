@@ -29,21 +29,13 @@ const Parkingslots = () => {
         backgroundColor: "#fff",
         padding: wp("2%"),
         borderRadius: 5,
-        shadowColor: "#000",
-        shadowOffset: {
-          width: 0,
-          height: 2,
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-        elevation: 5,
       }}
     >
       <View
         style={{ flexDirection: "row", gap: wp("2%"), alignItems: "center" }}
       >
         <FontAwesome name="map-marker" size={wp("6%")} color="#000" />
-        <Text style={{ fontWeight: "bold" }}>Nelson Mandela Str</Text>
+        <Text style={{ fontWeight: "500" }}>Nelson Mandela Str</Text>
       </View>
       <View style={{ marginTop: hp("2%") }}>
         <Text style={{ color: "grey" }}>Price</Text>
@@ -59,13 +51,6 @@ const Parkingslots = () => {
           >
             $1.50/hr
           </Text>
-          <TouchableOpacity onPress={toggleFavourite}>
-            <FontAwesome
-              name={isFavourite ? "heart" : "heart-o"}
-              size={wp("8%")}
-              color="blue"
-            />
-          </TouchableOpacity>
         </View>
         <View
           style={{
