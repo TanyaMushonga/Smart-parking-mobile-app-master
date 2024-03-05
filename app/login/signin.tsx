@@ -6,23 +6,64 @@ import {
   ScrollView,
   KeyboardAvoidingView,
   Platform,
+  TextInput,
+  TouchableOpacity,
+  ActivityIndicator,
+  Alert,
 } from "react-native";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
-import React from "react";
-import Textinput from "../components/textinput";
-import Numberinput from "../components/numberinput";
-import PasswordInput from "../components/passwordinput";
+import React, { useState } from "react";
 import Divider from "../components/divider";
 import BTN from "../components/button";
 import { Link } from "expo-router";
 import SigninBtn from "../components/signinbtn";
 import Icon from "react-native-vector-icons/FontAwesome";
 const driver = require("../../assets/user2.png");
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 const Signin = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const togglePasswordVisibility = () => {
+    setIsPasswordVisible(!isPasswordVisible);
+  };
+
+  const handleSignIn = async () => {
+    const auth = getAuth();
+    if (!email || !password) {
+      setErrorMessage("fill in the credentials");
+      return;
+    }
+    setIsLoading(true);
+    try {
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      // Signed in
+      const user = userCredential.user;
+      Alert.alert("Success", "You have successfully signed in");
+      // ...
+    } catch (error) {
+      setErrorMessage("credentials are incorrect");
+      setTimeout(() => {
+        setErrorMessage("");
+        setEmail("");
+        setPassword("");
+      }, 800);
+      // ..
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const [isLoading, setIsLoading] = useState(false);
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -39,16 +80,73 @@ const Signin = () => {
         <View style={styles.inputcontainer}>
           <View style={styles.input}>
             <Text>Email</Text>
-            <Textinput placeholder={"Email"} />
+            <TextInput
+              style={{
+                height: hp("6%"),
+                borderColor: "gray",
+                backgroundColor: "#f2f2f2",
+                borderRadius: 5,
+                padding: wp("2%"),
+              }}
+              placeholder={"Enter email"}
+              value={email}
+              onChangeText={setEmail}
+              autoCapitalize="none"
+            />
           </View>
 
           <View style={styles.input}>
             <Text>Password</Text>
-            <PasswordInput placeholder={"Enter password"} />
+            <View
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+                backgroundColor: "#f2f2f2",
+                borderRadius: 5,
+                padding: wp("2%"),
+              }}
+            >
+              <TextInput
+                secureTextEntry={!isPasswordVisible}
+                style={{ flex: 1, height: hp("4%") }}
+                placeholder={"Enter password"}
+                value={password}
+                onChangeText={setPassword}
+              />
+              <TouchableOpacity onPress={togglePasswordVisibility}>
+                <Icon
+                  name={isPasswordVisible ? "eye-slash" : "eye"}
+                  size={20}
+                />
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
+        {errorMessage ? (
+          <Text style={{ color: "red" }}>{errorMessage}</Text>
+        ) : null}
         <View style={styles.btncontainer}>
-          <BTN text="Login" />
+          <TouchableOpacity
+            onPress={() => {
+              handleSignIn();
+            }}
+            style={{
+              backgroundColor: "blue",
+              width: "100%",
+              height: hp("6.5%"),
+              borderRadius: 10,
+              padding: wp("2%"),
+            }}
+            disabled={isLoading}
+          >
+            <Text style={{ textAlign: "center", color: "white" }}>
+              {isLoading ? (
+                <ActivityIndicator size="small" color="white" />
+              ) : (
+                "Sign in"
+              )}
+            </Text>
+          </TouchableOpacity>
         </View>
         <Link style={styles.link} href="/login">
           <Text>Don't have an account?</Text>

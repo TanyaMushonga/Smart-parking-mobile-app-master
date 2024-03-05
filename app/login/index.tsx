@@ -22,7 +22,7 @@ import BTN from "../components/button";
 import { Link } from "expo-router";
 import SigninBtn from "../components/signinbtn";
 const driver = require("../../assets/user2.png");
-import firebase from "firebase/app";
+
 import "firebase/auth";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { app } from "./../config/firebase";
@@ -33,14 +33,12 @@ const login = () => {
   const [fullname, setFullname] = useState("");
   const [phone, setPhone] = useState("");
   const auth = getAuth(app);
-
-  const [value, setValue] = useState("");
-
   const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleTextChange = (text: string) => {
     const formattedText = text.replace(/[^0-9]/g, ""); // Remove non-numeric characters
-    setValue(formattedText);
+    setPhone(formattedText);
   };
 
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -50,6 +48,10 @@ const login = () => {
   };
 
   const handleSignUp = async () => {
+    if (!email || !password || !fullname || !phone) {
+      setErrorMessage("Fill in the details");
+      return;
+    }
     setIsLoading(true);
     try {
       const userCredential = await createUserWithEmailAndPassword(
@@ -57,12 +59,17 @@ const login = () => {
         email,
         password
       );
-      Alert.alert("Success", "User created successfully");
+      // Signed in
     } catch (error) {
       if (error.code === "auth/email-already-in-use") {
-        Alert.alert("Error", "The email is already in use");
-      } else {
-        Alert.alert("Error", "Failed to create user");
+        setErrorMessage("Email already in use");
+        setTimeout(() => {
+          setErrorMessage("");
+          setEmail("");
+          setPassword("");
+          setFullname("");
+          setPhone("");
+        }, 800);
       }
     } finally {
       setIsLoading(false);
@@ -126,7 +133,7 @@ const login = () => {
               }}
               keyboardType="phone-pad"
               onChangeText={handleTextChange}
-              value={value}
+              value={phone}
               placeholder="Enter phone number"
             />
           </View>
@@ -157,6 +164,9 @@ const login = () => {
             </View>
           </View>
         </View>
+        {errorMessage ? (
+          <Text style={{ color: "red" }}>{errorMessage}</Text>
+        ) : null}
         <View style={styles.btncontainer}>
           <TouchableOpacity
             onPress={() => {

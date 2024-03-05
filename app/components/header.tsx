@@ -26,7 +26,7 @@ const Headers = () => {
           fontSize: wp("6%"),
         }}
       >
-        City Smart Parking
+        Park Smarter
       </Text>
       <TouchableOpacity style={{}}>
         <Link href={"./../search"}>

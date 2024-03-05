@@ -21,9 +21,9 @@ const index = () => {
       <Image source={car1} alt="car" style={styles.car1} />
       <Image source={car2} alt="car" style={styles.car2} />
 
-      <Text style={styles.text}>Welcome to smart parking solution</Text>
+      <Text style={styles.text}>Welcome to Park Smarter</Text>
       <Text style={styles.subheader}>
-        Smart parking is an app that gives you the convinient of finding free
+        Park Smarter is an app that gives you the convinient of finding free
         parking slots within the city and handles everything for your
       </Text>
       <View style={styles.btnview}>
