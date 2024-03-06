@@ -6,12 +6,6 @@ import {
 } from "react-native-responsive-screen";
 import { Ionicons } from "@expo/vector-icons";
 import { Link } from "expo-router";
-import * as Font from "expo-font";
-import {
-  Roboto_400Regular,
-  Roboto_400Regular_Italic,
-  Roboto_700Bold,
-} from "@expo-google-fonts/roboto";
 
 const Headers = () => {
   return (
@@ -25,11 +19,20 @@ const Headers = () => {
     >
       <Text
         style={{
-          fontFamily: "sans-serif",
-          fontStyle: "italic",
-          color: "black",
+          color: "#fff",
           fontWeight: "bold",
           fontSize: wp("6%"),
+          backgroundColor: "#2a3bbf",
+          padding: wp("2%"),
+          borderRadius: 5,
+          shadowColor: "#000",
+          shadowOffset: {
+            width: 0,
+            height: 2,
+          },
+          shadowOpacity: 0.25,
+          shadowRadius: 3.84,
+          elevation: 5,
         }}
       >
         Park Smarter
@@ -39,7 +42,7 @@ const Headers = () => {
       >
         <TouchableOpacity style={{}}>
           <Link href={"./../search"}>
-            <Ionicons name="search" size={24} color="black" />
+            <Ionicons name="search" size={26} color="black" />
           </Link>
         </TouchableOpacity>
 
@@ -48,8 +51,8 @@ const Headers = () => {
             <Image
               source={require("./../../assets/profile.jpg")}
               style={{
-                width: wp("10%"),
-                height: wp("10%"),
+                width: wp("8%"),
+                height: wp("8%"),
                 borderRadius: wp("5%"), // half of width and height to make it fully rounded
                 borderWidth: 2, // width of the border
                 borderColor: "blue", // color of the border

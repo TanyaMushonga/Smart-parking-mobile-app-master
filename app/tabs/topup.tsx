@@ -25,7 +25,7 @@ const topup = () => {
       <StatusBar backgroundColor="#3d85c6" barStyle="light-content" />
       <View
         style={{
-          backgroundColor: "#3d85c6",
+          backgroundColor: "#2a3bbf",
           borderBottomLeftRadius: 20,
           borderBottomRightRadius: 20,
           flex: 1,
@@ -80,7 +80,7 @@ const topup = () => {
       </View>
       <View style={{ padding: wp("4%") }}>
         <View style={{ marginTop: hp("3%"), marginBottom: hp("15%") }}>
-          <Text style={{ fontWeight: "bold", fontSize: wp("5%") }}>
+          <Text style={{ fontSize: wp("4%"), fontWeight: "700" }}>
             Your spending history
           </Text>
           <ScrollView
@@ -93,7 +93,7 @@ const topup = () => {
           >
             <View
               style={{
-                backgroundColor: "#3d85c6",
+                backgroundColor: "#2a3bbf",
                 padding: wp("3%"),
                 borderRadius: wp("3%"),
                 flex: 1,
@@ -167,9 +167,9 @@ const topup = () => {
           <View style={{ marginVertical: hp("3%") }}>
             <Text
               style={{
-                fontWeight: "bold",
-                fontSize: wp("5%"),
-                marginBottom: wp("4%"),
+                fontSize: wp("4%"),
+                fontWeight: "700",
+                marginBottom: wp("3%"),
               }}
             >
               Topup your account
@@ -187,6 +187,7 @@ const topup = () => {
           </View>
         </View>
       </View>
+      <View style={{ height: hp("10%") }}></View>
     </ScrollView>
   );
 };
