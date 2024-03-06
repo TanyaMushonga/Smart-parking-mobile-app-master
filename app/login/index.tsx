@@ -60,6 +60,7 @@ const login = () => {
         password
       );
       // Signed in
+      Alert.alert("Success", "You have successfully signed up");
     } catch (error) {
       if (error.code === "auth/email-already-in-use") {
         setErrorMessage("Email already in use");

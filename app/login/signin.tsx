@@ -23,8 +23,10 @@ import SigninBtn from "../components/signinbtn";
 import Icon from "react-native-vector-icons/FontAwesome";
 const driver = require("../../assets/user2.png");
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { useNavigation } from "@react-navigation/native";
 
 const Signin = () => {
+  const navigation = useNavigation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -48,8 +50,8 @@ const Signin = () => {
       );
       // Signed in
       const user = userCredential.user;
-      Alert.alert("Success", "You have successfully signed in");
-      // ...
+
+      navigation.navigate("tabs");
     } catch (error) {
       setErrorMessage("credentials are incorrect");
       setTimeout(() => {
