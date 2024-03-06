@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, Image } from "react-native";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -62,9 +62,7 @@ const Parkingspace = () => {
               <Text style={{ color: "green" }}>Drive</Text>
             </TouchableOpacity>
           </View>
-          <View style={{ backgroundColor: "blue" }}>
-            <Text>hey</Text>
-          </View>
+          <View style={{ backgroundColor: "blue" }}></View>
         </View>
       </View>
     </View>

@@ -1,4 +1,11 @@
-import { View, Text, TouchableOpacity, Button } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Image,
+  Platform,
+  Linking,
+} from "react-native";
 import React, { useState } from "react";
 import {
   widthPercentageToDP as wp,
@@ -6,7 +13,13 @@ import {
 } from "react-native-responsive-screen";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 
-const Parkingslots = () => {
+type ParkingslotsProps = {
+  // Define props here.
+  street: string;
+  price: string;
+};
+
+const Parkingslots = (props: ParkingslotsProps) => {
   const [isFavourite, setIsFavourite] = useState(false);
 
   const toggleFavourite = () => {
@@ -23,6 +36,19 @@ const Parkingslots = () => {
     console.log("Reserve button pressed");
   };
 
+  const handleGetDirections = (latitude, longitude) => {
+    const url = Platform.select({
+      ios: `maps://app?saddr=&daddr=${latitude},${longitude}`,
+      android: `geo:0,0?q=${latitude},${longitude}`,
+    });
+
+    if (url) {
+      Linking.openURL(url);
+    } else {
+      console.error("Unable to get directions, unknown platform");
+    }
+  };
+
   return (
     <View
       style={{
@@ -35,7 +61,7 @@ const Parkingslots = () => {
         style={{ flexDirection: "row", gap: wp("2%"), alignItems: "center" }}
       >
         <FontAwesome name="map-marker" size={wp("6%")} color="#000" />
-        <Text style={{ fontWeight: "500" }}>Nelson Mandela Str</Text>
+        <Text style={{ fontWeight: "500" }}>{props.street}</Text>
       </View>
       <View style={{ marginTop: hp("2%") }}>
         <Text style={{ color: "grey" }}>Price</Text>
@@ -49,7 +75,7 @@ const Parkingslots = () => {
           <Text
             style={{ color: "#808080", fontSize: wp("7%"), fontWeight: "bold" }}
           >
-            $1.50/hr
+            {props.price}
           </Text>
         </View>
         <View
@@ -66,9 +92,23 @@ const Parkingslots = () => {
               borderRadius: 5,
               width: wp("40%"),
             }}
-            onPress={Drive}
+            onPress={() => handleGetDirections(-20.16, 28.68)}
           >
-            <Text style={{ color: "#FFFFFF", fontWeight: "bold" }}>Drive</Text>
+            <View
+              style={{
+                flexDirection: "row",
+                gap: wp("2%"),
+                alignItems: "center",
+              }}
+            >
+              <Image
+                source={require("./../../assets/drive.png")}
+                style={{ width: wp("6%"), height: wp("6%") }}
+              />
+              <Text style={{ color: "#FFFFFF", fontWeight: "bold" }}>
+                Get directions
+              </Text>
+            </View>
           </TouchableOpacity>
           <TouchableOpacity
             style={{
@@ -79,7 +119,21 @@ const Parkingslots = () => {
             }}
             onPress={Reserve}
           >
-            <Text style={{ color: "black", fontWeight: "bold" }}>Reserve</Text>
+            <View
+              style={{
+                flexDirection: "row",
+                gap: wp("2%"),
+                alignItems: "center",
+              }}
+            >
+              <Image
+                source={require("./../../assets/reserve.png")}
+                style={{ width: wp("6%"), height: wp("6%") }}
+              />
+              <Text style={{ color: "black", fontWeight: "bold" }}>
+                Reserve slot
+              </Text>
+            </View>
           </TouchableOpacity>
         </View>
       </View>

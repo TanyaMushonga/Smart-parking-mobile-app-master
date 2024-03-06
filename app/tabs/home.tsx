@@ -4,8 +4,6 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 import React from "react";
-import SearchInput from "../components/searchinput";
-import Parkingspace from "../components/parkingspace";
 import SearchFilter from "../components/SearchFilter";
 import Parkingslots from "../components/parkingslots";
 import MapViewComponent from "../components/mapView";
@@ -32,10 +30,10 @@ const index = () => {
           Available parking space
         </Text>
         <View style={{ gap: wp("4%") }}>
-          <Parkingslots />
-          <Parkingslots />
-          <Parkingslots />
-          <Parkingslots />
+          <Parkingslots street={"Nelson Mandel Street"} price={"$1.3/hr"} />
+          <Parkingslots street={"Fife Avenue"} price={"$1.5/hr"} />
+          <Parkingslots street={"J Nkomo Street"} price={"$1/hr"} />
+          <Parkingslots street={"J Moyo"} price={"$1.5/hr"} />
         </View>
       </View>
     </ScrollView>
@@ -50,9 +48,9 @@ const styles = StyleSheet.create({
   },
   maps: {
     backgroundColor: "#fff",
-    height: hp("37.5%"),
+    height: hp("45.5%"),
     width: "100%",
-    marginVertical: wp("5.5%"),
+    marginVertical: wp("4.5%"),
     borderRadius: wp("5.25%"),
   },
 });
